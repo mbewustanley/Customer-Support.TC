@@ -1,0 +1,17 @@
+torch
+torchvision
+torchaudio
+transformers
+datasets
+tokenizers
+accelerate
+evaluate
+scikit-learn
+pandas
+numpy
+pyyaml
+tqdm
+#mlflow
+#dvc
+#fastapi
+#docker
