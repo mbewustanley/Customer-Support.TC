@@ -1,0 +1,21 @@
+dataset:
+  name: polyAI/banking77
+
+schema:
+  columns:
+    text: string
+    label: int64
+
+size:
+  train: 10003
+  test: 3080
+
+classification:
+  num_classes: 77
+  label_indexing: zero_based
+
+split:
+  tolerance: 0.01
+
+text:
+  min_length: 1
