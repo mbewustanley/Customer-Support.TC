@@ -11,6 +11,7 @@ pandas
 numpy
 pyyaml
 tqdm
+pytest
 #mlflow
 #dvc
 #fastapi
