@@ -19,3 +19,12 @@ split:
 
 text:
   min_length: 1
+
+preprocessing:
+  strip_whitespace: true
+  remove_empty_text: true
+  normalize_labels: true
+  expected_num_classes: 77
+
+analysis:
+  generate_class_distribution: true
