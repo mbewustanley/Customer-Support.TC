@@ -12,7 +12,8 @@ numpy
 pyyaml
 tqdm
 pytest
+matplotlib
 #mlflow
-#dvc
+dvc
 #fastapi
 #docker
