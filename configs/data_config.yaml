@@ -4,7 +4,7 @@ dataset:
 schema:
   columns:
     text: string
-    label: int64
+    label: ClassLabel
 
 size:
   train: 10003

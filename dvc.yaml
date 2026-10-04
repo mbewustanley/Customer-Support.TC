@@ -1,0 +1,48 @@
+stages:
+  ingest:
+    cmd: python -m src.data.ingestion
+    deps:
+      - src/data/ingestion.py
+    outs:
+      - data/raw
+
+  validate:
+    cmd: python -m src.run_validation
+    deps:
+      - data/raw
+      - configs/data_config.yaml
+      - src/data/validation.py
+      - src/utils/config_loader.py
+      - src/utils/exceptions.py
+      - src/utils/logger.py
+      - src/run_validation.py
+    outs:
+      - reports/validation/validation_report.json
+
+  preprocess:
+    cmd: python -m src.preprocessing.preprocessing
+    deps:
+      - data/raw
+      - reports/validation/validation_report.json
+      - configs/data_config.yaml
+      - src/preprocessing/preprocessing.py
+      - src/utils/config_loader.py
+      - src/utils/exceptions.py
+      - src/utils/logger.py
+    outs:
+      - data/processed
+
+  data_analysis:
+    cmd: python -m src.run_data_analysis
+    deps:
+      - data/processed
+      - configs/data_config.yaml
+      - src/analysis/class_distribution.py
+      - src/analysis/text_quality.py
+      - src/utils/config_loader.py
+      - src/utils/exceptions.py
+      - src/utils/logger.py
+      - src/run_data_analysis.py
+    outs:
+      - reports/data/class_distribution
+      - reports/data/text_quality

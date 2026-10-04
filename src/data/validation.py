@@ -303,17 +303,27 @@ class Banking77Validator:
                 dataset.features[column]
             )
 
-            expected_feature_type = (
-                f"Value('{expected_type}')"
-            )
+            if expected_type == "ClassLabel":
+                expected_feature_type = "ClassLabel"
 
-            if actual_type != expected_feature_type:
+                if not actual_type.startswith(expected_feature_type):
+                    self._add_error(
+                        f"{split_name}: Column '{column}' "
+                        f"has type {actual_type}; "
+                        f"expected ClassLabel."
+                    )
 
-                self._add_error(
-                    f"{split_name}: Column '{column}' "
-                    f"has type {actual_type}; "
-                    f"expected {expected_feature_type}."
+            else:
+                expected_feature_type = (
+                    f"Value('{expected_type}')"
                 )
+
+                if actual_type != expected_feature_type:
+                    self._add_error(
+                        f"{split_name}: Column '{column}' "
+                        f"has type {actual_type}; "
+                        f"expected {expected_feature_type}."
+                    )
 
     # ==================================================================
     # Schema consistency

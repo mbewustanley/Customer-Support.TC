@@ -2,8 +2,7 @@
 #  It will clean the data and convert it into a format that can be used by the model.
 
 from pathlib import Path
-from posixpath import split
-from typing import List, Tuple
+from typing import Tuple
 
 from datasets import Dataset, load_from_disk
 

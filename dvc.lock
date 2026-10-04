@@ -1,0 +1,137 @@
+schema: '2.0'
+stages:
+  ingest:
+    cmd: python -m src.data.ingestion
+    deps:
+    - path: src/data/ingestion.py
+      hash: md5
+      md5: 5d6e12e77f3fd8b5e941df6273e9356f
+      size: 2010
+    outs:
+    - path: data/raw
+      hash: md5
+      md5: e56f09d855e434cc18f21bc1a9c26c98.dir
+      size: 934135
+      nfiles: 6
+  validate:
+    cmd: python -m src.run_validation
+    deps:
+    - path: configs/data_config.yaml
+      hash: md5
+      md5: 9d1cc0024643e1b2ed4d99c726c7ea10
+      size: 437
+    - path: data/raw
+      hash: md5
+      md5: e56f09d855e434cc18f21bc1a9c26c98.dir
+      size: 934135
+      nfiles: 6
+    - path: src/data/validation.py
+      hash: md5
+      md5: 2dc4d4b1925af01a1444791e748f5c98
+      size: 32856
+    - path: src/run_validation.py
+      hash: md5
+      md5: 36ccb4c46b6929e001f385ca83010886
+      size: 960
+    - path: src/utils/config_loader.py
+      hash: md5
+      md5: 1b482b92913f51a942cce21284ec9e37
+      size: 242
+    - path: src/utils/exceptions.py
+      hash: md5
+      md5: 03efaeb19f3a74fae40111b335829b06
+      size: 845
+    - path: src/utils/logger.py
+      hash: md5
+      md5: 8d9c743c3372e47fab862edeae737b47
+      size: 1329
+    outs:
+    - path: reports/validation/validation_report.json
+      hash: md5
+      md5: f8c38e68a51c2b2b9326b576ae7c0902
+      size: 80
+  preprocess:
+    cmd: python -m src.preprocessing.preprocessing
+    deps:
+    - path: configs/data_config.yaml
+      hash: md5
+      md5: 9d1cc0024643e1b2ed4d99c726c7ea10
+      size: 437
+    - path: data/raw
+      hash: md5
+      md5: a7c8398360f5621e04fe50d4200bfde3.dir
+      size: 2895311
+      nfiles: 12
+    - path: reports/validation/validation_report.json
+      hash: md5
+      md5: f8c38e68a51c2b2b9326b576ae7c0902
+      size: 80
+    - path: src/preprocessing/preprocessing.py
+      hash: md5
+      md5: dd20fd72847aaae63c9664123d6c217d
+      size: 7951
+    - path: src/utils/config_loader.py
+      hash: md5
+      md5: 1b482b92913f51a942cce21284ec9e37
+      size: 242
+    - path: src/utils/exceptions.py
+      hash: md5
+      md5: 03efaeb19f3a74fae40111b335829b06
+      size: 845
+    - path: src/utils/logger.py
+      hash: md5
+      md5: 8d9c743c3372e47fab862edeae737b47
+      size: 1329
+    outs:
+    - path: data/processed
+      hash: md5
+      md5: 600b1bc16b236fd02f0cbf13e9a872ae.dir
+      size: 934127
+      nfiles: 6
+  data_analysis:
+    cmd: python -m src.run_data_analysis
+    deps:
+    - path: configs/data_config.yaml
+      hash: md5
+      md5: 9d1cc0024643e1b2ed4d99c726c7ea10
+      size: 437
+    - path: data/processed
+      hash: md5
+      md5: 600b1bc16b236fd02f0cbf13e9a872ae.dir
+      size: 934127
+      nfiles: 6
+    - path: src/analysis/class_distribution.py
+      hash: md5
+      md5: 26594fa45a617d57073cd9bfeec25257
+      size: 9071
+    - path: src/analysis/text_quality.py
+      hash: md5
+      md5: f51bcfbd36202baaed5d4e3b01ce1315
+      size: 7477
+    - path: src/run_data_analysis.py
+      hash: md5
+      md5: 7372fed50af27d0926efc46276fe1a15
+      size: 985
+    - path: src/utils/config_loader.py
+      hash: md5
+      md5: 1b482b92913f51a942cce21284ec9e37
+      size: 242
+    - path: src/utils/exceptions.py
+      hash: md5
+      md5: 03efaeb19f3a74fae40111b335829b06
+      size: 845
+    - path: src/utils/logger.py
+      hash: md5
+      md5: 8d9c743c3372e47fab862edeae737b47
+      size: 1329
+    outs:
+    - path: reports/data/class_distribution
+      hash: md5
+      md5: ae9e03467df13e437878eca7de58a83e.dir
+      size: 54251
+      nfiles: 2
+    - path: reports/data/text_quality
+      hash: md5
+      md5: cbb91ec0bdbfde8af9ee6d3bf15d5edd.dir
+      size: 1190030
+      nfiles: 3
