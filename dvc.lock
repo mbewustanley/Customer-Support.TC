@@ -135,3 +135,21 @@ stages:
       md5: cbb91ec0bdbfde8af9ee6d3bf15d5edd.dir
       size: 1190030
       nfiles: 3
+  tokenize:
+    cmd: python -m src.tokenization.tokenizer
+    deps:
+    - path: data/processed
+      hash: md5
+      md5: bbef50b14830dbd2166eb60162bad113.dir
+      size: 12071527
+      nfiles: 8
+    - path: src/tokenization/tokenizer.py
+      hash: md5
+      md5: 59817e588454658cd8dcbf336b9810f8
+      size: 5139
+    outs:
+    - path: data/tokenized
+      hash: md5
+      md5: cf68a9198108dd1e55a8d4c3769e6fe6.dir
+      size: 11145459
+      nfiles: 6

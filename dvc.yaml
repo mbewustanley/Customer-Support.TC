@@ -46,3 +46,11 @@ stages:
     outs:
       - reports/data/class_distribution
       - reports/data/text_quality
+
+  tokenize:
+    cmd: python -m src.tokenization.tokenizer
+    deps:
+      - data/processed
+      - src/tokenization/tokenizer.py
+    outs:
+      - data/tokenized
