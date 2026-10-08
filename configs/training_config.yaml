@@ -1,0 +1,38 @@
+training:
+  model_name: distilbert-base-uncased
+  num_labels: 77
+
+  batch_size: 16
+  eval_batch: 16
+  max_length: 128
+  num_workers: 0
+
+  epochs: 3
+  learning_rate: 0.00002
+  weight_decay: 0.01
+  warmup_ratio: 0.1
+
+  seed: 42
+  device: auto
+
+  validation_ratio: 0.1
+
+  output_dir: artifacts/models
+  checkpoint_dir: artifacts/checkpoints
+  report_dir: artifacts/reports
+
+  tokenized_data_dir: data/tokenized
+
+evaluation:
+  primary_metric: macro_f1
+  metrics:
+    - accuracy
+    - macro_precision
+    - macro_recall
+    - macro_f1
+
+## gradient_accumulation_steps
+## early_stopping
+## max_grad_norm
+## patience
+## fp16
