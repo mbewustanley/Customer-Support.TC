@@ -345,7 +345,7 @@ class Trainer:
 
         with torch.no_grad():
 
-            for batch in self.eval_loader:
+            for batch in data_loader:
 
                 input_ids = batch[
                     "input_ids"
